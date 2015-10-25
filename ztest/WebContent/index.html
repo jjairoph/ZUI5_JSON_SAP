@@ -34,18 +34,25 @@ firstVisibleRow: 0
 }) ;
 <!--first column day -->
 oTable2.addColumn(new sap.ui.table.Column({
-label: new sap.ui.commons.Label({text: "el id caso"}),
+label: new sap.ui.commons.Label({text: "IDCASO"}),
 template: new sap.ui.commons.TextView().bindProperty("text", "IdCaso"),
-width : "150px"
+width : "60px"
 }));
 
 <!--second column comment -->
 oTable2.addColumn(new sap.ui.table.Column({
-label: new sap.ui.commons.Label({text: "ls referencia cliente"}),
+label: new sap.ui.commons.Label({text: "REFcliente"}),
 template: new sap.ui.commons.TextView().bindProperty("text", "RefCliente"),
+width : "60px"
+}));
+
+//Meter la otra columna
+<!--second column comment -->
+oTable2.addColumn(new sap.ui.table.Column({
+label: new sap.ui.commons.Label({text: "dESCRIPCION"}),
+template: new sap.ui.commons.TextView().bindProperty("text", "DescCaso"),
 width : "300px"
 }));
-//Meter la otra columna
 
 //bind model to table control
 oTable2.setModel(oModel2);
