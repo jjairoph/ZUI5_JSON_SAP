@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+		
+
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.ui.commons,sap.ui.table"
+				data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+
+		<script>
+		
+////		asi se conecta con OData
+////////////////////////////////////////////////////
+////////oData Model
+//URL of the OData service - IMPORTANT: relative to the server
+var sServiceUrl = "http://localhost/saptest/sap/opu/odata/sap/ZCASOS_INDRA_SRV_03/";
+//		var sServiceUrl = "/sap/opu/odata/sap/ZCASOS_INDRA_SRV_03/";	cuando deploy sap	
+
+//create OData model instance with service URL and JSON format
+var oModel2 = new sap.ui.model.odata.ODataModel(sServiceUrl, true, "abapjj", "chelin74");
+
+<!--load odata in model -->
+
+<!--create instance of table control -->
+var oTable2 = new sap.ui.table.Table({
+title: "Tabla de los clientes",
+visibleRowCount :5, 
+firstVisibleRow: 0
+}) ;
+<!--first column day -->
+oTable2.addColumn(new sap.ui.table.Column({
+label: new sap.ui.commons.Label({text: "el id caso"}),
+template: new sap.ui.commons.TextView().bindProperty("text", "IdCaso"),
+width : "150px"
+}));
+
+<!--second column comment -->
+oTable2.addColumn(new sap.ui.table.Column({
+label: new sap.ui.commons.Label({text: "ls referencia cliente"}),
+template: new sap.ui.commons.TextView().bindProperty("text", "RefCliente"),
+width : "300px"
+}));
+//Meter la otra columna
+
+//bind model to table control
+oTable2.setModel(oModel2);
+oTable2.bindRows("/CaseSet/");
+oTable2.placeAt("content");
+		
+		
+		
+			
+		</script>
+
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+	</body>
+</html>
